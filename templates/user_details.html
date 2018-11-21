@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+User Details
+{% endblock %}
+
+{% block content %}
+
+
+<a href="/users" class="btn btn-primary">User List</a>
+<br>
+<br>
+<img src="{{ user.image_url }}" alt="{{ user.full_name }}'s photo">
+<h1>{{ user.full_name }}</h1>
+
+<form>
+  <a href="/users/{{ user.id }}/edit" class="btn btn-primary">Edit</a>
+  <button formmethod="post" formaction="/users/{{ user.id }}/delete" class="btn btn-danger">Delete</button>
+</form>
+<br>
+
+<h3>Posts</h3>
+<ul>
+    <!-- How to get ordered list of posts? -->
+    {% for post in user.posts %} 
+    <li><a href="/posts/{{ post.id }}">{{ post.title }}</a> <small>{{ post.friendly_date }}</small></li>
+    {% endfor %}
+</ul>
+
+<a href="/users/{{ user.id }}/posts/new" class="btn btn-primary">Add Post</a>
+{% endblock %}

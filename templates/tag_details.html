@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Tag Details
+{% endblock %}
+
+{% block content %}
+
+
+<a href="/tags" class="btn btn-primary">Tag List</a>
+<br>
+<br>
+<h1>{{ tag.name }}</h1>
+
+<ul>
+    {% for tag in tags %} 
+    <li><a href="/posts/{{ tag.posts.id }}">{{ tag.posts.title }}</a> <small>{{ tag.posts.friendly_date }}</small></li>
+    {% endfor %}
+</ul>
+
+<form>
+    <a href="/tags/{{ tag.id }}/edit" class="btn btn-primary">Edit</a>
+    <button formmethod="post" formaction="/tags/{{ tag.id }}/delete" class="btn btn-danger">Delete</button>
+  </form>
+{% endblock %}
